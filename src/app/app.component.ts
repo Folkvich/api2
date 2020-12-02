@@ -48,10 +48,6 @@ export class AppComponent implements OnInit {
 
 
   async onPageChange2(filterValue) {
-
-
-    // await this.api3(0, 20, filterValue);
-
     await this.api4(0, 20,);
 
   }
