@@ -17,8 +17,6 @@ import { MatTableDataSource, } from '@angular/material/table';
 
 export class AppComponent implements OnInit {
 
-
-
   title = "hello,world"
   result1: any = {};
   result2: any;
@@ -27,40 +25,28 @@ export class AppComponent implements OnInit {
   values1: any;
   values2: any;
   values3: any;
-
   displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price'];
-
-
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private api: HttpClient) { }
 
-
   ngOnInit(): void {
-
-    this.api4(0, 50);
+    this.api4(0, 10);
   }
-
 
   onPageChange1(event: PageEvent) {
-
     this.api4(event.pageIndex, event.pageSize)
-
   }
-
 
   async onPageChange2(filterValue) {
     await this.api4(0, 20,);
-
   }
 
-  async onPageChange3(v1,v2,v3) {
-    await this.insertCake(v1,v2,v3);
-    
-
+  async onPageChange3(v1, v2, v3) {
+    await this.insertCake(v1, v2, v3);
+    this.api4(0,10);
   }
-
 
   // api1(): void {
   //   this.api.post('https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/users',
@@ -88,116 +74,54 @@ export class AppComponent implements OnInit {
 
   //   this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
   // }
-
-
-
   // async api2(page: number, pageSize: number) {
-
-
-
   //   await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/stores?page=${page + 1}&pageSize=${pageSize}`,
   //     {
   //       method: 'GET',
   //       headers: { 'authorization': this.result1.result }
   //     }).then(res => res.json()).then(res1 => this.result2 = res1)
-
-
-
-
+ 
   //   this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
-
   //   this.dataSource.paginator = this.dataSource;
-
-
   //   let dataTest = this.result2.result.data;
-
-
   //   console.log('datatest')
   //   console.log(dataTest.filter(e => e['storeId'] === '00000'))
-
   //   console.log(this.result1)
   //   console.log(this.result2)
   //   console.log(this.dataSource)
-
-
-
   // }
 
-
   async api4(page: number, pageSize: number) {
-
-
-
     await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con5?page=${page + 1}&pageSize=${pageSize}`,
       {
         method: 'GET',
-        
-        
       }).then(res => res.json()).then(res1 => this.result2 = res1)
-
-
     this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
-
     this.dataSource.paginator = this.dataSource;
-
     this.dataSource.filter = this.result2.result;
-
-
     let dataTest = this.result2.result.data;
     console.log('datatest')
-
-
-
-
     console.log(dataTest.filter(e => e['cake_id'] === '00000'))
-
-
-
     console.log(this.result1)
     console.log(this.result2)
     console.log(this.dataSource)
-
-
   }
 
-  async insertCake(name: string,price:number,stock:number) {
-
-
-
+  async insertCake(name: string, price: number, stock: number) {
     await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con5`,
       {
         method: 'POST',
-        body: JSON.stringify({cake_name:name,cake_price:price,cake_stock:stock})
-      
-        
+        body: JSON.stringify({ cake_name: name, cake_price: price, cake_stock: stock })
       }).then(res => res.json()).then(res1 => this.result2 = res1)
-
-
     this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
-
     this.dataSource.paginator = this.dataSource;
-
     this.dataSource.filter = this.result2.result;
-
-
     let dataTest = this.result2.result.data;
     console.log('datatest')
-
-
-
-
     console.log(dataTest.filter(e => e['cake_id'] === '00000'))
-
-
-
     console.log(this.result1)
     console.log(this.result2)
     console.log(this.dataSource)
-
-
   }
-
-
-
 }
 

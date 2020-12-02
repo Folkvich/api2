@@ -1,13 +1,13 @@
 table {
-    width: 100%;
+    width: 50%;
   }
 
 
   .header {
-    padding: 60px;
+    padding: 50px;
     text-align: center;
-    background: #630404;
-    color: white;
+    background: #49be45;
+    color: rgb(6, 29, 44);
     font-size: 30px;
   }
 
