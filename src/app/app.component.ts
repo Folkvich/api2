@@ -54,7 +54,8 @@ export class AppComponent implements OnInit {
 
   async onPageChange3(v1, v2, v3) {
     await this.insertCake(v1, v2, v3);
-    await this.api4(0, 100,);
+    await this.api4(0,100,);
+    await this.api4(0,this.dataLength,);
 
   }
 
