@@ -21,21 +21,23 @@ import { MatDialog } from '@angular/material/dialog';
 export class AppComponent implements OnInit {
 
   title = "hello,world"
-  result1: any = {};
+  result1: any;
   result2: any;
   dataSource;
   dataLength = 0;
   currentPage;
-  values1: any;
-  values2: any;
-  values3: any;
-  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price','cake_stock', 'Edit','Delete'];
+  values1: any = "";
+  values2: any = "";
+  values3: any = "";
+  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price', 'cake_stock', 'Edit', 'Delete'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
-  constructor(private api: HttpClient,
-    public dialog: MatDialog) { }
+  constructor(
+    private api: HttpClient,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.api4(0, 10);
@@ -101,20 +103,23 @@ export class AppComponent implements OnInit {
   //   console.log(this.dataSource)
   // }
 
-  async api4(page: number, pageSize: number) {
-    await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con5?page=${page + 1}&pageSize=${pageSize}`,
+  api4(page: number, pageSize: number) {
+    fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con5?page=${page + 1}&pageSize=${pageSize}`,
       {
         method: 'GET',
-      }).then(res => res.json()).then(res1 => this.result2 = res1)
-    this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
-    this.dataSource.paginator = this.dataSource;
-    this.dataSource.filter = this.result2.result;
-    let dataTest = this.result2.result.data;
-    this.dataLength = this.result2.result.total;
-    console.log('datatest')
-    console.log(this.result2)
-    console.log(this.dataSource)
-    console.log(">------------", this.dataLength)
+      }).then(res => res.json()).then(res1 => {
+        this.dataSource = new MatTableDataSource<Element>(res1.result.data);
+        //this.dataSource.paginator = this.dataSource;
+        //this.dataSource.filter = res1.result;
+        this.dataLength = res1.result.total;
+        // console.log('datatest')
+        // console.log(res1)
+        // console.log(this.dataSource)
+        // console.log(">------------", this.dataLength)
+      })
+
+
+
   }
 
   async insertCake(name: string, price: number, stock: number) {
@@ -124,7 +129,7 @@ export class AppComponent implements OnInit {
         body: JSON.stringify({ cake_name: name, cake_price: price, cake_stock: stock })
       }).then(res => res.json()).then(res1 => this.result2 = res1)
     this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
-    this.dataSource.paginator = this.dataSource;
+    //  this.dataSource.paginator = this.dataSource;
     this.dataSource.filter = this.result2.result;
     let dataTest = this.result2.result.data;
     console.log('datatest')
@@ -134,19 +139,22 @@ export class AppComponent implements OnInit {
 
   openDialog(action, obj) {
     obj.action = action;
+
+    //console.log(obj)
+
     const dialogRef = this.dialog.open(DialogShowComponent, {
       width: '250px',
       data: obj
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event == 'Add') {
-        this.addRowData(result.data);
-      } else if (result.event == 'Update') {
-        this.updateRowData(result.data);
-      } else if (result.event == 'Delete') {
-        this.deleteRowData(result.data);
-      }
+      // if (result.event == 'Add') {
+      //   this.addRowData(result.data);
+      // } else if (result.event == 'Update') {
+      //   this.updateRowData(result.data);
+      // } else if (result.event == 'Delete') {
+      //   this.deleteRowData(result.data);
+      // }
     });
   }
 
