@@ -21,22 +21,25 @@ export class AppComponent implements OnInit {
   result1: any = {};
   result2: any;
   dataSource;
+  dataLength = 0 ;
+  currentPage;
 
   values1: any;
   values2: any;
   values3: any;
-  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price'];
+  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price','control'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private api: HttpClient) { }
 
   ngOnInit(): void {
-    this.api4(0, 10);
+     this.api4(0, 10);
   }
 
   onPageChange1(event: PageEvent) {
     this.api4(event.pageIndex, event.pageSize)
+    this.currentPage = event.pageIndex
   }
 
   async onPageChange2(filterValue) {
@@ -45,8 +48,11 @@ export class AppComponent implements OnInit {
 
   async onPageChange3(v1, v2, v3) {
     await this.insertCake(v1, v2, v3);
-    this.api4(0,10);
+    await this.api4(0, 100,);
+    
   }
+
+  async onEdit(){}
 
   // api1(): void {
   //   this.api.post('https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/users',
@@ -100,11 +106,13 @@ export class AppComponent implements OnInit {
     this.dataSource.paginator = this.dataSource;
     this.dataSource.filter = this.result2.result;
     let dataTest = this.result2.result.data;
+    this.dataLength = this.result2.result.total;
     console.log('datatest')
-    console.log(dataTest.filter(e => e['cake_id'] === '00000'))
-    console.log(this.result1)
+   
+    
     console.log(this.result2)
     console.log(this.dataSource)
+    console.log(">------------",this.dataLength)
   }
 
   async insertCake(name: string, price: number, stock: number) {
@@ -118,8 +126,6 @@ export class AppComponent implements OnInit {
     this.dataSource.filter = this.result2.result;
     let dataTest = this.result2.result.data;
     console.log('datatest')
-    console.log(dataTest.filter(e => e['cake_id'] === '00000'))
-    console.log(this.result1)
     console.log(this.result2)
     console.log(this.dataSource)
   }

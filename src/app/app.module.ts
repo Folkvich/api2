@@ -14,10 +14,12 @@ import { FormsModule } from '@angular/forms';
 
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DialogComponent,
 
   ],
   imports: [

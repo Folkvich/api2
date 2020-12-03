@@ -43,7 +43,7 @@
 <div class="mat-elevation-z8" *ngIf="dataSource">
 
 
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource" >
 
 
   Position Column
@@ -64,15 +64,23 @@
     <td mat-cell *matCellDef="let element"> {{element.cake_price}} </td>
   </ng-container>
 
+  edit Column
+  <ng-container matColumnDef="control" style="width:100px;">
+    <th mat-header-cell  *matHeaderCellDef style="width:100px;"> Edit </th>
+    <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="button"(click)="onEdit(element)">แก้ไขข้อมูล</button></td>
+  </ng-container>
+
+  
+
   
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-  
+
 
   <mat-paginator  
-                  [length]="100" 
+                  [length]="dataLength" 
                   [pageSize]="10" 
                   [pageSizeOptions]="[5, 10, 25, 50]"
                   (page) =  "onPageChange1($event)"
