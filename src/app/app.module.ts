@@ -15,11 +15,15 @@ import { FormsModule } from '@angular/forms';
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogShowComponent } from './dialog-show/dialog-show.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
+    DialogShowComponent,
 
   ],
   imports: [
@@ -34,7 +38,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MatSortModule,
     MatTableFilterModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
  
 
 

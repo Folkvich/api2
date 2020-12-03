@@ -6,7 +6,10 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { MatTableDataSource, } from '@angular/material/table';
 
+import { DialogShowComponent } from './dialog-show/dialog-show.component';
 
+import { MatTable } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -21,20 +24,21 @@ export class AppComponent implements OnInit {
   result1: any = {};
   result2: any;
   dataSource;
-  dataLength = 0 ;
+  dataLength = 0;
   currentPage;
-
   values1: any;
   values2: any;
   values3: any;
-  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price','control'];
+  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price','cake_stock', 'control'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
-  constructor(private api: HttpClient) { }
+  constructor(private api: HttpClient,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
-     this.api4(0, 10);
+    this.api4(0, 10);
   }
 
   onPageChange1(event: PageEvent) {
@@ -49,10 +53,10 @@ export class AppComponent implements OnInit {
   async onPageChange3(v1, v2, v3) {
     await this.insertCake(v1, v2, v3);
     await this.api4(0, 100,);
-    
+
   }
 
-  async onEdit(){}
+  async onEdit() { }
 
   // api1(): void {
   //   this.api.post('https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/users',
@@ -86,7 +90,7 @@ export class AppComponent implements OnInit {
   //       method: 'GET',
   //       headers: { 'authorization': this.result1.result }
   //     }).then(res => res.json()).then(res1 => this.result2 = res1)
- 
+
   //   this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
   //   this.dataSource.paginator = this.dataSource;
   //   let dataTest = this.result2.result.data;
@@ -108,11 +112,9 @@ export class AppComponent implements OnInit {
     let dataTest = this.result2.result.data;
     this.dataLength = this.result2.result.total;
     console.log('datatest')
-   
-    
     console.log(this.result2)
     console.log(this.dataSource)
-    console.log(">------------",this.dataLength)
+    console.log(">------------", this.dataLength)
   }
 
   async insertCake(name: string, price: number, stock: number) {
@@ -129,5 +131,48 @@ export class AppComponent implements OnInit {
     console.log(this.result2)
     console.log(this.dataSource)
   }
+
+  openDialog(action, obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogShowComponent, {
+      width: '250px',
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'Add') {
+        this.addRowData(result.data);
+      } else if (result.event == 'Update') {
+        this.updateRowData(result.data);
+      } else if (result.event == 'Delete') {
+        this.deleteRowData(result.data);
+      }
+    });
+  }
+
+  addRowData(row_obj) {
+    var d = new Date();
+    this.dataSource.push({
+      id: d.getTime(),
+      name: row_obj.name
+    });
+    this.table.renderRows();
+  }
+
+  updateRowData(row_obj) {
+    this.dataSource = this.dataSource.filter((value, key) => {
+      if (value.id == row_obj.id) {
+        value.name = row_obj.name;
+      }
+      return true;
+    });
+  }
+
+  deleteRowData(row_obj) {
+    this.dataSource = this.dataSource.filter((value, key) => {
+      return value.id != row_obj.id;
+    });
+  }
+
 }
 
