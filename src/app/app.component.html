@@ -60,9 +60,14 @@
   </ng-container>
 
   edit Column
-  <ng-container matColumnDef="control" style="width:100px;">
+  <ng-container matColumnDef="Edit" style="width:100px;">
     <th mat-header-cell  *matHeaderCellDef style="width:100px;"> Edit </th>
-    <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="button"(click)="openDialog(element)">แก้ไขข้อมูล</button></td>
+    <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="button"(click)="openDialog('update',element)">แก้ไขข้อมูล</button></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Delete" style="width:100px;">
+    <th mat-header-cell  *matHeaderCellDef style="width:100px;"> Delete </th>
+    <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="buttonred"(click)="openDialog('delete',element)">ลบข้อมูล</button></td>
   </ng-container>
 
   

@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   values1: any;
   values2: any;
   values3: any;
-  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price','cake_stock', 'control'];
+  displayedColumns: string[] = ['cake_id', 'cake_name', 'cake_price','cake_stock', 'Edit','Delete'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
