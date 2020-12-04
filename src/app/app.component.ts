@@ -56,8 +56,8 @@ export class AppComponent implements OnInit {
 
   async onPageChange3(v1, v2, v3) {
     await this.insertCake(v1, v2, v3);
-    await this.api4(0,100,);
-    await this.api4(0,this.dataLength,);
+    await this.api4(0, 100,);
+    await this.api4(0, this.dataLength,);
 
   }
 
@@ -141,8 +141,6 @@ export class AppComponent implements OnInit {
   }
 
 
- 
-
   editDialog(action, obj) {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogShowComponent, {
@@ -150,11 +148,10 @@ export class AppComponent implements OnInit {
       data: obj
     });
     dialogRef.afterClosed().subscribe(async result => {
-      await this.api4(0,100,);
-      await this.api4(0,this.dataLength,);
+      await this.api4(0, 100,);
+      await this.api4(0, this.dataLength,);
     });
   }
-
 
 
   deleteDialog(action, obj) {
@@ -164,12 +161,12 @@ export class AppComponent implements OnInit {
       data: obj
     });
     dialogRef.afterClosed().subscribe(async result => {
-      await this.api4(0,100,);
-      await this.api4(0,this.dataLength,);
+      await this.api4(0, 100,);
+      await this.api4(0, this.dataLength,);
     });
   }
 
-  
+
   addRowData(row_obj) {
     var d = new Date();
     this.dataSource.push({
@@ -179,6 +176,7 @@ export class AppComponent implements OnInit {
     this.table.renderRows();
   }
 
+
   updateRowData(row_obj) {
     this.dataSource = this.dataSource.filter((value, key) => {
       if (value.id == row_obj.id) {
@@ -187,6 +185,7 @@ export class AppComponent implements OnInit {
       return true;
     });
   }
+  
 
   deleteRowData(row_obj) {
     this.dataSource = this.dataSource.filter((value, key) => {

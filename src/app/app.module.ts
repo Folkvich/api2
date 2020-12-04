@@ -12,8 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import { DialogShowComponent } from './dialog-show/dialog-show.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -25,7 +25,7 @@ import {MatInputModule} from '@angular/material/input';
     DialogShowComponent,
     DialogDeleteComponent,
 
-    
+
 
   ],
   imports: [
@@ -43,7 +43,7 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule
- 
+
 
 
 
