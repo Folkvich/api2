@@ -21,19 +21,19 @@
 <div class="row">
   <div class="col">
     <mat-form-field appearance="fill">
-      <mat-label>data1</mat-label>
+      <mat-label>CakeName</mat-label>
       <input [(ngModel)]="values1" matInput placeholder="" #matInput>
     </mat-form-field>
   </div>
   <div class="col">
     <mat-form-field appearance="fill">
-      <mat-label>data2</mat-label>
+      <mat-label>CakePrice</mat-label>
       <input [(ngModel)]="values2" matInput placeholder="" #matInput>
     </mat-form-field>
   </div>
   <div class="col">
     <mat-form-field appearance="fill">
-      <mat-label>data3</mat-label>
+      <mat-label>CakeStock</mat-label>
       <input [(ngModel)]="values3" matInput placeholder="" #matInput>
     </mat-form-field>
   </div>
@@ -76,15 +76,17 @@
     </ng-container>
 
     edit Column
+    
     <ng-container matColumnDef="Edit" style="width:100px;">
       <th mat-header-cell *matHeaderCellDef style="width:100px;"> Edit </th>
-      <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="button"
+      <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="btn btn-primary"
           (click)="openDialog('update',element)">แก้ไขข้อมูล</button></td>
     </ng-container>
+  
 
     <ng-container matColumnDef="Delete" style="width:100px;">
       <th mat-header-cell *matHeaderCellDef style="width:100px;"> Delete </th>
-      <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="buttonred"
+      <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="btn btn-danger"
           (click)="openDialog('delete',element)">ลบข้อมูล</button></td>
     </ng-container>
 

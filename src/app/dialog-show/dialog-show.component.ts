@@ -34,7 +34,7 @@ export class DialogShowComponent  {
     this.dialogRef.close({event:'Cancel'});
   }
 
-  
+
 }
 
 
