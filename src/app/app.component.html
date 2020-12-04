@@ -1,52 +1,50 @@
-<!-- <button (click)="test()">Fecth 1</button>
-<button (click)="test2()">Fecth 2</button>
 
-<table>
-  <hr>
-  {{result | json}}
-  <hr>
-  {{result2 | json}}
-</table> -->
-
-
-<!-- 
-<button (click)="api1()">api1</button> -->
-<!-- <button (click)="api2()">api2</button> -->
 
 <div class="header">
+<h1 class='deepshadow'> Welcome To StoreCake
+</h1>
 
-  <p>DataCakes</p>
-</div>
 
-<div class="row">
-  <div class="col">
-    <mat-form-field appearance="fill">
-      <mat-label>CakeName</mat-label>
-      <input [(ngModel)]="values1" matInput placeholder="" #matInput>
-    </mat-form-field>
-  </div>
-  <div class="col">
-    <mat-form-field appearance="fill">
-      <mat-label>CakePrice</mat-label>
-      <input [(ngModel)]="values2" matInput placeholder="" #matInput>
-    </mat-form-field>
-  </div>
-  <div class="col">
-    <mat-form-field appearance="fill">
-      <mat-label>CakeStock</mat-label>
-      <input [(ngModel)]="values3" matInput placeholder="" #matInput>
-    </mat-form-field>
-  </div>
+<div class="img">
+
+  <img src="https://i.pinimg.com/originals/fa/38/02/fa3802e478b66b8841a3ce41904de159.gif" alt="D1">
+
 </div>
 
 
-<button mdbBtn size="sm" gradient="aqua" rounded="true" class="btn btn-warning btn-block" mdbWavesEffect type="submit"
-  (click)="onPageChange3(values1,values2,values3)">insert</button>
+</div>
+
+<div class="container p-4 my-3">
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>CakeName</mat-label>
+        <input [(ngModel)]="values1" matInput placeholder="" #matInput>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>CakePrice</mat-label>
+        <input [(ngModel)]="values2" matInput placeholder="" #matInput>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>CakeStock</mat-label>
+        <input [(ngModel)]="values3" matInput placeholder="" #matInput>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <button mdbBtn size="sm" gradient="aqua" rounded="true" class="btn btn-warning btn-block" mdbWavesEffect type="submit"
+    (click)="onPageChange3(values1,values2,values3)">insert</button>
+
+</div>
 
 
 
-
-
+<div class="container p-4 my-3">
 <div class="mat-elevation-z8" *ngIf="dataSource">
   <table mat-table [dataSource]="dataSource">
 
@@ -76,18 +74,18 @@
     </ng-container>
 
     edit Column
-    
+
     <ng-container matColumnDef="Edit" style="width:100px;">
       <th mat-header-cell *matHeaderCellDef style="width:100px;"> Edit </th>
       <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="btn btn-primary"
-          (click)="openDialog('update',element)">แก้ไขข้อมูล</button></td>
+          (click)="editDialog('update',element)">แก้ไขข้อมูล</button></td>
     </ng-container>
-  
+
 
     <ng-container matColumnDef="Delete" style="width:100px;">
       <th mat-header-cell *matHeaderCellDef style="width:100px;"> Delete </th>
       <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="btn btn-danger"
-          (click)="openDialog('delete',element)">ลบข้อมูล</button></td>
+          (click)="deleteCake(element.cake_id)">ลบข้อมูล</button></td>
     </ng-container>
 
 
@@ -104,5 +102,5 @@
 
   </mat-paginator>
 
-
+</div>
 </div>

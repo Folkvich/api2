@@ -13,6 +13,7 @@ export interface UsersData {
 })
 
 export class DialogShowComponent  {
+  
 
   action:string;
   local_data:any;
@@ -32,6 +33,31 @@ export class DialogShowComponent  {
 
   closeDialog(){
     this.dialogRef.close({event:'Cancel'});
+  }
+
+  async upadateDialog(){
+
+
+    this.updateCake(this.data['cake_id'],this.local_data.name,this.local_data.price,this.local_data.stock);
+    
+    this.dialogRef.close({event:'Update'});
+  }
+
+  async updateCake(id : string, name: string, price: string, stock: string) {
+
+    let sendBody = JSON.stringify({ 
+      "cake_id": id , 
+      "cake_name": name, 
+      "cake_price": price, 
+      "cake_stock": stock 
+    })
+    console.log('body',sendBody)
+
+    await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con3`,
+      {
+        method: 'PUT',
+        body: sendBody
+      }).then(res => res.json()).then(res1 => {console.log(res1)})
   }
 
 

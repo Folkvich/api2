@@ -138,7 +138,27 @@ export class AppComponent implements OnInit {
     console.log(this.dataSource)
   }
 
-  openDialog(action, obj) {
+
+  async deleteCake(id : string) {
+
+    let sendBody = JSON.stringify({ 
+      "cake_id": id 
+    })
+    console.log('body',sendBody)
+
+    await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con3`,
+      {
+        method: 'DELETE',
+        body: sendBody
+      }).then(res => res.json()).then( res1 => {
+        
+        console.log(res1)
+      
+       this.api4(0,this.dataLength,);
+      })
+  }
+
+  editDialog(action, obj) {
     obj.action = action;
 
     //console.log(obj)
@@ -148,7 +168,10 @@ export class AppComponent implements OnInit {
       data: obj
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async result => {
+
+      await this.api4(0,100,);
+      await this.api4(0,this.dataLength,);
       // if (result.event == 'Add') {
       //   this.addRowData(result.data);
       // } else if (result.event == 'Update') {
@@ -184,4 +207,6 @@ export class AppComponent implements OnInit {
   }
 
 }
+
+
 

@@ -1,44 +1,17 @@
-table {
-    width: 100%;
-  }
+
   .header {
     padding: 50px;
     text-align: center;
-    background: #49be45;
+    background-image: linear-gradient(to bottom right, #d8a626, #dad3a4);
     color: rgb(6, 29, 44);
     font-size: 30px;
+    background-size: cover;    
+    height: 100vh;
+   
   }
 
   section {
     display: table;
-  }
-  
-  .example-label {
-    display: table-cell;
-    font-size: 14px;
-    margin-left: 8px;
-    min-width: 120px;
-  }
-  
-  .example-button-row {
-    display: table-cell;
-    width: 490px;
-  }
-  
-  .example-button-row .mat-button-base {
-    margin: 8px 8px 8px 0;
-  }
-  
-  .example-flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
   }
 
   .button {
@@ -63,12 +36,41 @@ table {
     font-size: 16px;
   }
 
-
   table {
     width: 100%;
   }
   
   .mat-form-field {
-    font-size: 14px;
+    font-size: 20px;
     width: 100%;
   }
+
+  img {
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px 10px rgba(50,50,50,.4);
+   
+  }
+
+
+
+
+  h1 {
+    font-family: 'Nerko One', cursive;
+    font-size: 92px;
+    padding: 80px 50px;
+    text-align: center;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+  }
+ 
+  h1.deepshadow {
+    color: #ffffff;
+    border-radius: 80%;
+    background-image: linear-gradient(to bottom right, #da4141, #1f1f1f);
+    text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0, 0, 0, 0.9);
+  }
+  
+
+
+
+ 
