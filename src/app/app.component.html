@@ -85,10 +85,8 @@
     <ng-container matColumnDef="Delete" style="width:100px;">
       <th mat-header-cell *matHeaderCellDef style="width:100px;"> Delete </th>
       <td mat-cell *matCellDef="let element" style="width:100px;"> <button class="btn btn-danger"
-          (click)="deleteCake(element.cake_id)">ลบข้อมูล</button></td>
+          (click)="deleteDialog('Delete',element)">ลบข้อมูล</button></td>
     </ng-container>
-
-
 
 
 

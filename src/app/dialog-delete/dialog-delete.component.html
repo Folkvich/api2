@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>You sure ?<strong>{{action}}</strong></h1>
+<div>
+
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.name}}</b>?
+  </ng-template>
+
+
+</div>
+<div mat-dialog-actions>
+  
+  <button mat-button (click)="deleteDialog()" mat-flat-button color="warn">Submit</button>
+  <button  (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

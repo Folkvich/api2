@@ -10,10 +10,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableFilterModule } from 'mat-table-filter';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { Pipe, PipeTransform } from '@angular/core';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import { DialogShowComponent } from './dialog-show/dialog-show.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
+
 
 
 
@@ -22,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 
     AppComponent,
     DialogShowComponent,
+    DialogDeleteComponent,
 
     
 

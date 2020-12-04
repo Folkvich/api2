@@ -6,6 +6,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { MatTableDataSource, } from '@angular/material/table';
 
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+
 import { DialogShowComponent } from './dialog-show/dialog-show.component';
 
 import { MatTable } from '@angular/material/table';
@@ -139,49 +141,35 @@ export class AppComponent implements OnInit {
   }
 
 
-  async deleteCake(id : string) {
-
-    let sendBody = JSON.stringify({ 
-      "cake_id": id 
-    })
-    console.log('body',sendBody)
-
-    await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con3`,
-      {
-        method: 'DELETE',
-        body: sendBody
-      }).then(res => res.json()).then( res1 => {
-        
-        console.log(res1)
-      
-       this.api4(0,this.dataLength,);
-      })
-  }
+ 
 
   editDialog(action, obj) {
     obj.action = action;
-
-    //console.log(obj)
-
     const dialogRef = this.dialog.open(DialogShowComponent, {
       width: '250px',
       data: obj
     });
-
     dialogRef.afterClosed().subscribe(async result => {
-
       await this.api4(0,100,);
       await this.api4(0,this.dataLength,);
-      // if (result.event == 'Add') {
-      //   this.addRowData(result.data);
-      // } else if (result.event == 'Update') {
-      //   this.updateRowData(result.data);
-      // } else if (result.event == 'Delete') {
-      //   this.deleteRowData(result.data);
-      // }
     });
   }
 
+
+
+  deleteDialog(action, obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '250px',
+      data: obj
+    });
+    dialogRef.afterClosed().subscribe(async result => {
+      await this.api4(0,100,);
+      await this.api4(0,this.dataLength,);
+    });
+  }
+
+  
   addRowData(row_obj) {
     var d = new Date();
     this.dataSource.push({
