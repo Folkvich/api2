@@ -14,8 +14,11 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import { DialogShowComponent } from './dialog-show/dialog-show.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { NavigationComponent } from './navigation/navigation.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -24,13 +27,14 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     DialogShowComponent,
     DialogDeleteComponent,
+    NavigationComponent,
 
 
 
   ],
   imports: [
-
-
+    MatSelectModule,
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -42,7 +46,9 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule,
+    MatSlideToggleModule
 
 
 

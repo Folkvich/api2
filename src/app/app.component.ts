@@ -1,6 +1,6 @@
 
 import { HttpClient } from '@angular/common/http';
-
+import {  Inject, Renderer2 } from '@angular/core';
 import { Component, OnInit, ViewChild, } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
@@ -12,15 +12,17 @@ import { DialogShowComponent } from './dialog-show/dialog-show.component';
 
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 
 
 export class AppComponent implements OnInit {
+
 
   title = "hello,world"
   result1: any;
@@ -37,13 +39,29 @@ export class AppComponent implements OnInit {
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
     private api: HttpClient,
     public dialog: MatDialog
   ) { }
 
+  get isDarkMode(): boolean {
+    return this.currentTheme === 'theme-dark';
+  }
+  private currentTheme = 'theme-light';
+
   ngOnInit(): void {
+    this.currentTheme = localStorage.getItem('activeTheme') || 'theme-light';
+    this.renderer.setAttribute(this.document.body, 'class', this.currentTheme);
     this.api4(0, 10);
   }
+
+  switchMode(isDarkMode: boolean) {
+    this.currentTheme = isDarkMode ? 'theme-dark' : 'theme-light';
+    this.renderer.setAttribute(this.document.body, 'class', this.currentTheme);
+    localStorage.setItem('activeTheme', this.currentTheme);
+  }
+
 
   onPageChange1(event: PageEvent) {
     this.api4(event.pageIndex, event.pageSize)
