@@ -13,6 +13,7 @@ import { DialogShowComponent } from './dialog-show/dialog-show.component';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
+import { encode } from 'querystring';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ import { DOCUMENT } from '@angular/common';
 
 export class AppComponent implements OnInit {
 
-
+  loading = false;
   title = "hello,world"
   result1: any;
   result2: any;
@@ -69,7 +70,9 @@ export class AppComponent implements OnInit {
   }
 
   async onPageChange2(filterValue) {
-    await this.api4(0, 20,);
+    this.loading = true;
+    await this.apisearch(0, 20,filterValue);
+    this.loading = false;
   }
 
   async onPageChange3(v1, v2, v3) {
@@ -94,19 +97,20 @@ export class AppComponent implements OnInit {
   //   console.log(this.result2)
   // }
 
-  // async api3(page: number, pageSize: number, keyword: string) {
+  async api3(page: number, pageSize: number, keyword: string) {
 
-  //   await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/stores?page=${page + 1}&pageSize=${pageSize}&keyword=${keyword}&filter=0`,
-  //     {
-  //       method: 'GET'//,
-  //       //headers: { 'authorization': this.result1.result }
-  //     }).then(res => res.json()).then(res1 => {
-  //       console.log('xxxxxxxx', res1);
-  //       this.result2 = res1;
-  //     })
+    await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/stores?page=${page + 1}&pageSize=${pageSize}&keyword=${keyword}&filter=0`,
+      {
+        method: 'GET'//,
+        //headers: { 'authorization': this.result1.result }
+      }).then(res => res.json()).then(res1 => {
+        console.log('xxxxxxxx', res1);
+        this.result2 = res1;
+      })
 
-  //   this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
-  // }
+    this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
+  }
+
   // async api2(page: number, pageSize: number) {
   //   await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/stores?page=${page + 1}&pageSize=${pageSize}`,
   //     {
@@ -137,7 +141,10 @@ export class AppComponent implements OnInit {
         // console.log(res1)
         // console.log(this.dataSource)
         // console.log(">------------", this.dataLength)
+      }).catch(e => {
+        debugger;
       })
+
 
 
 
@@ -209,6 +216,24 @@ export class AppComponent implements OnInit {
     this.dataSource = this.dataSource.filter((value, key) => {
       return value.id != row_obj.id;
     });
+  }
+
+  async apisearch(page: number, pageSize: number, keyword: string) {
+
+    encodeURI('xyz');
+
+    await fetch(`https://eupiwacc9g.execute-api.ap-southeast-1.amazonaws.com/v1/cake/con5?page=${page + 1}&pageSize=${pageSize}&keyword=${encodeURI(keyword)}&filter=0`,
+      {
+        method: 'GET'//,
+        //headers: { 'authorization': this.result1.result }
+      }).then(res => res.json()).then(res1 => {
+        console.log('xxxxxxxx', res1);
+        this.result2 = res1;
+      }).catch(e => {
+        debugger;
+      })
+
+    this.dataSource = new MatTableDataSource<Element>(this.result2.result.data);
   }
 
 }

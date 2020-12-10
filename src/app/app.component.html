@@ -1,5 +1,6 @@
 <app-navigation class="dark" (darkModeSwitched)="switchMode($event)" [isDarkMode]="isDarkMode"></app-navigation>
 
+
 <div class="dark">
   <h1 class='deepshadow' > Welcome To StoreCake
   </h1>
@@ -14,12 +15,12 @@
 
 </div>
 
-<div class="container p-4 my-3">
+<div class="container p-100 my-3">
   <div class="row">
     <div class="col">
       <mat-form-field appearance="fill">
         <mat-label>CakeName</mat-label>
-        <input [(ngModel)]="values1" matInput placeholder="" #matInput>
+        <input #search [(ngModel)]="values1" matInput placeholder="" #matInput>
       </mat-form-field>
     </div>
     <div class="col">
@@ -39,6 +40,9 @@
 
   <button mdbBtn size="sm" gradient="aqua" rounded="true" class="btn btn-warning btn-block" mdbWavesEffect type="submit"
     (click)="onPageChange3(values1,values2,values3)">insert</button>
+
+    <button mdbBtn size="sm" gradient="aqua" rounded="true" class="btn btn-warning btn-block" mdbWavesEffect type="submit"
+    (click)="onPageChange2(search.value)">Search</button>
 
 </div>
 
@@ -94,11 +98,15 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-
+    <div class="dark">
     <mat-paginator [length]="dataLength" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"
       (page)="onPageChange1($event)">
 
     </mat-paginator>
 
   </div>
+</div>
+
+<div *ngIf="loading" class="overlay">
+  <div class="lds-dual-ring"></div>
 </div>
