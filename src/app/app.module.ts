@@ -10,6 +10,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableFilterModule } from 'mat-table-filter';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 
@@ -22,7 +23,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   ],
   imports: [
 
-
+    ScrollingModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
